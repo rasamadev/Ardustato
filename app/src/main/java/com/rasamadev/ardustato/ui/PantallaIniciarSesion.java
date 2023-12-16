@@ -1,5 +1,6 @@
 package com.rasamadev.ardustato.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -34,9 +35,16 @@ public class PantallaIniciarSesion extends AppCompatActivity {
         String mail = etCorreo_IniciarSesion.getText().toString();
         String pass = etPass_IniciarSesion.getText().toString();
 
-        // FUNCION ESTATICA QUE COMPRUEBE USER Y PASSWORD EN LA BBDD
+        // COMPROBAMOS USER Y PASSWORD EN LA BBDD
         if(comprobarUser(mail,pass)){
-            Toast.makeText(this, "Iniciado sesion correctamente.", Toast.LENGTH_SHORT).show();
+            // RECOGEMOS EL ID DEL USUARIO INICIADO Y LO ENVIAMOS A LA PANTALLA DE CONEXIONES
+            // PARA QUE SE PUEDAN CARGAR SUS CONEXIONES
+            String idUsuarioSesionIniciada = recogerIdUser(mail,pass);
+            Toast.makeText(this, "Iniciado sesion usuario con id: " + idUsuarioSesionIniciada, Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent(this,PantallaConnections.class);
+            i.putExtra("id",idUsuarioSesionIniciada);
+            startActivity(i);
         }
         else{
             Toast.makeText(this, "Usuario y/o contraseña incorrecto(s).", Toast.LENGTH_SHORT).show();
@@ -59,5 +67,18 @@ public class PantallaIniciarSesion extends AppCompatActivity {
         }
 
         return existe;
+    }
+
+    private String recogerIdUser(String mail, String pass){
+        String idUsuarioSesionIniciada = "";
+
+        for(User u: datos.selectUsers()){
+            if(u.getMail().equals(mail) && u.getPass().equals(pass)){
+                idUsuarioSesionIniciada = u.getId();
+                break;
+            }
+        }
+
+        return idUsuarioSesionIniciada;
     }
 }

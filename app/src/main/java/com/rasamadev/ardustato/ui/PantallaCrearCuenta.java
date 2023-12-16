@@ -42,6 +42,8 @@ public class PantallaCrearCuenta extends AppCompatActivity {
                 Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
             }
             else{
+                // INSERTAMOS EL USUARIO Y VAMOS A LA PANTALLA DE INICIO
+                // (HABRIA QUE PONER PARA QUE SIMPLEMENTE VUELVA PARA ATRAS!!!)
                 datos.insertarUser(fullname,mail,pass);
                 Toast.makeText(this, "Cuenta creada con exito.", Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this, PantallaInicio.class);
