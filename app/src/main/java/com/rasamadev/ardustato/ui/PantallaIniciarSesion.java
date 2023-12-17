@@ -37,19 +37,19 @@ public class PantallaIniciarSesion extends AppCompatActivity {
 
         // COMPROBAMOS USER Y PASSWORD EN LA BBDD
         if(comprobarUser(mail,pass)){
-            // RECOGEMOS EL ID DEL USUARIO INICIADO Y LO ENVIAMOS A LA PANTALLA DE CONEXIONES
-            // PARA QUE SE PUEDAN CARGAR SUS CONEXIONES
-            String idUsuarioSesionIniciada = recogerIdUser(mail,pass);
-            Toast.makeText(this, "Iniciado sesion usuario con id: " + idUsuarioSesionIniciada, Toast.LENGTH_SHORT).show();
-
+            // RECOGEMOS TODOS LOS DATOS DEL USUARIO INICIADO Y LOS ENVIAMOS
+            // A LA PANTALLA DE CONEXIONES PARA QUE SE PUEDAN CARGAR SUS CONEXIONES
             Intent i = new Intent(this,PantallaConnections.class);
-            i.putExtra("id",idUsuarioSesionIniciada);
+            i.putExtra("id",recogerIdUser(mail,pass));
+            i.putExtra("fullname",recogerFullnameUser(mail,pass));
+            i.putExtra("mail",mail);
+            i.putExtra("pass",pass);
+
             startActivity(i);
         }
         else{
             Toast.makeText(this, "Usuario y/o contraseña incorrecto(s).", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void OlvidePass(View view) {
@@ -80,5 +80,18 @@ public class PantallaIniciarSesion extends AppCompatActivity {
         }
 
         return idUsuarioSesionIniciada;
+    }
+
+    private String recogerFullnameUser(String mail, String pass){
+        String fullnameUsuarioSesionIniciada = "";
+
+        for(User u: datos.selectUsers()){
+            if(u.getMail().equals(mail) && u.getPass().equals(pass)){
+                fullnameUsuarioSesionIniciada = u.getFullname();
+                break;
+            }
+        }
+
+        return fullnameUsuarioSesionIniciada;
     }
 }

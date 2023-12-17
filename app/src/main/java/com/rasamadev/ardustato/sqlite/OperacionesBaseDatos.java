@@ -50,6 +50,33 @@ public class OperacionesBaseDatos {
         return users;
     }
 
+//    public User selectUserById(String idUser){
+//        SQLiteDatabase db = baseDatos.getReadableDatabase();
+//
+//        User u = new User("","","","");
+//
+//        // Filter results WHERE "id" = 'idUser'
+//        String selection = "id = ?";
+//        String[] selectionArgs = {idUser};
+//
+//        Cursor cursor = db.query("users",null,selection,selectionArgs,null,null,null);
+//        while(cursor.moveToNext()) {
+//            String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+//            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
+//            String mail = cursor.getString(cursor.getColumnIndexOrThrow("mail"));
+//            String pass = cursor.getString(cursor.getColumnIndexOrThrow("pass"));
+//
+//            u.setId(id);
+//            u.setFullname(fullname);
+//            u.setMail(mail);
+//            u.setPass(pass);
+//        }
+//        cursor.close();
+//
+//        Log.d("METODO DEVOLVER USER, DEVUELVE",u.toString());
+//        return u;
+//    }
+
     public List<Connection> selectConnectionsByUser(String idUser){
         SQLiteDatabase db = baseDatos.getReadableDatabase();
 

@@ -84,8 +84,12 @@ public class PantallaCrearConnection extends AppCompatActivity {
                 AlertDialogsUtil.mostrarError(this,"¡YA EXISTE UNA CONEXION CON EL MISMO NOMBRE E IP!");
             }
             else{
+                // INSERTAMOS LA CONEXION
                 datos.insertarConnection(nombreconnection,ipconnection,idUserSesionIniciada);
                 Toast.makeText(this, "Conexion creada con exito.", Toast.LENGTH_LONG).show();
+
+                // VOLVEMOS ATRAS CARGANDO DE NUEVO LAS CONEXIONES
+//                getOnBackPressedDispatcher().onBackPressed();
                 Intent i = new Intent(this, PantallaConnections.class);
                 i.putExtra("id",idUserSesionIniciada);
                 startActivity(i);

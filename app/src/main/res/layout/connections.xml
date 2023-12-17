@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.PantallaConnections">
 
+    <TextView
+        android:id="@+id/tvNoHayConnections_PantallaConnections"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="NO HAY CONEXIONES CREADAS. HAGA CLICK EN EL BOTON FLOTANTE &quot;+&quot; PARA CREAR UNA NUEVA CONEXION."
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/listViewConnections"
         android:layout_width="409dp"

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rasamadev.ardustato.R;
@@ -33,6 +34,9 @@ public class PantallaCrearCuenta extends AppCompatActivity {
         String mail = etCorreo_CrearCuenta.getText().toString();
         String pass = etPass_CrearCuenta.getText().toString();
 
+        // AÑADIR PATRONES COMPROBACION CORREO??
+        // AÑADIR PASSWORD MINIMO 8 CARACTERES??
+
         if(fullname.equals("") || mail.equals("") || pass.equals("")){
             Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
         }
@@ -42,12 +46,12 @@ public class PantallaCrearCuenta extends AppCompatActivity {
                 Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
             }
             else{
-                // INSERTAMOS EL USUARIO Y VAMOS A LA PANTALLA DE INICIO
-                // (HABRIA QUE PONER PARA QUE SIMPLEMENTE VUELVA PARA ATRAS!!!)
+                // INSERTAMOS EL USUARIO
                 datos.insertarUser(fullname,mail,pass);
                 Toast.makeText(this, "Cuenta creada con exito.", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(this, PantallaInicio.class);
-                startActivity(i);
+
+                // VOLVEMOS ATRAS;
+                getOnBackPressedDispatcher().onBackPressed();
             }
         }
     }
