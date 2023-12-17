@@ -23,7 +23,7 @@ import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 public class PantallaCrearConnection extends AppCompatActivity {
     private EditText etNombreConnection_PantallaCrearConnection, etIpConnection_PantallaCrearConnection;
 
-    private String idUserSesionIniciada;
+//    private String idUserSesionIniciada;
     private OperacionesBaseDatos datos;
 
 
@@ -34,8 +34,8 @@ public class PantallaCrearConnection extends AppCompatActivity {
 
         // RECUPERAMOS EL ID DEL USUARIO QUE HA INICIADO SESION PARA QUE, AL CREAR UNA CONNECTION,
         // SE ASOCIE A DICHO USUARIO
-        Bundle bundle = getIntent().getExtras();
-        idUserSesionIniciada = bundle.getString("id");
+//        Bundle bundle = getIntent().getExtras();
+//        idUserSesionIniciada = bundle.getString("id");
 
         etNombreConnection_PantallaCrearConnection = findViewById(R.id.etNombreConnection_PantallaCrearConnection);
         etIpConnection_PantallaCrearConnection = findViewById(R.id.etIpConnection_PantallaCrearConnection);
@@ -85,13 +85,13 @@ public class PantallaCrearConnection extends AppCompatActivity {
             }
             else{
                 // INSERTAMOS LA CONEXION
-                datos.insertarConnection(nombreconnection,ipconnection,idUserSesionIniciada);
+                datos.insertarConnection(nombreconnection,ipconnection,PantallaIniciarSesion.ID_USER);
                 Toast.makeText(this, "Conexion creada con exito.", Toast.LENGTH_LONG).show();
 
                 // VOLVEMOS ATRAS CARGANDO DE NUEVO LAS CONEXIONES
 //                getOnBackPressedDispatcher().onBackPressed();
                 Intent i = new Intent(this, PantallaConnections.class);
-                i.putExtra("id",idUserSesionIniciada);
+                i.putExtra("id",PantallaIniciarSesion.ID_USER);
                 startActivity(i);
             }
         }
@@ -100,7 +100,7 @@ public class PantallaCrearConnection extends AppCompatActivity {
     private boolean comprobarConnectionExistente(String nombreconnection, String ipconnection){
         boolean existe = false;
 
-        for(Connection c: datos.selectConnectionsByUser(idUserSesionIniciada)){
+        for(Connection c: datos.selectConnectionsByUser(PantallaIniciarSesion.ID_USER)){
             if(c.getConnectionname().equals(nombreconnection) && c.getIp().equals(ipconnection)){
                 existe = true;
                 break;

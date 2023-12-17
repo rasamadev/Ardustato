@@ -28,6 +28,9 @@
         <activity android:name=".ui.PantallaConnections"></activity>
         <activity android:name=".ui.PantallaConnection"></activity>
         <activity android:name=".ui.PantallaCrearConnection"></activity>
+        <activity android:name=".ui.PantallaModificarPerfil"></activity>
+        <activity android:name=".ui.PantallaModificarPass"></activity>
+        <activity android:name=".ui.PantallaPassOlvidada"></activity>
     </application>
 
 </manifest>

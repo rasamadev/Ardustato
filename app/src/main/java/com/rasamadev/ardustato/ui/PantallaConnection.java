@@ -69,18 +69,22 @@ public class PantallaConnection extends AppCompatActivity {
     }
 
     public void bajarTemperatura(View view) {
+        tvRespuesta_PantallaConnection.setText("");
         tempDeseada-=0.5;
         tempDeseadaString = Double.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
     }
 
     public void subirTemperatura(View view) {
+        tvRespuesta_PantallaConnection.setText("");
         tempDeseada+=0.5;
         tempDeseadaString = Double.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
     }
 
     public void ActualizarTemp(View view) {
+        tvRespuesta_PantallaConnection.setText("");
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://" + ip + "/gettemperatura";
 

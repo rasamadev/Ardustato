@@ -41,8 +41,12 @@ public class PantallaCrearCuenta extends AppCompatActivity {
             Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
         }
         else{
-            // COMPROBAR SI YA EXISTE UNA CUENTA CON EL CORREO ELECTRONICO INTRODUCIDO
-            if(comprobacionMail(mail)){
+//            if(comprobacionMail(mail)){
+//                Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
+//            }
+            // COMPROBAMOS EN LA BBDD SI YA EXISTE UNA CUENTA CON EL CORREO ELECTRONICO INTRODUCIDO.
+            String mailexistente = datos.comprobacionMail(mail);
+            if(mailexistente.equals(mail)){
                 Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
             }
             else{
@@ -56,16 +60,16 @@ public class PantallaCrearCuenta extends AppCompatActivity {
         }
     }
 
-    private boolean comprobacionMail(String mail){
-        boolean existe = false;
-
-        for(User u: datos.selectUsers()){
-            if(u.getMail().equals(mail)){
-                existe = true;
-                break;
-            }
-        }
-
-        return existe;
-    }
+//    private boolean comprobacionMail(String mail){
+//        boolean existe = false;
+//
+//        for(User u: datos.selectUsers()){
+//            if(u.getMail().equals(mail)){
+//                existe = true;
+//                break;
+//            }
+//        }
+//
+//        return existe;
+//    }
 }
