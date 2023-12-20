@@ -86,7 +86,7 @@ public class PantallaConnections extends AppCompatActivity{
 //        mailUserSesionIniciada = bundle.getString("mail");
 //        passUserSesionIniciada = bundle.getString("pass");
 //        AlertDialogsUtil.mostrarError(this,"ID: " + idUserSesionIniciada + ", NAME: " + fullnameUserSesionIniciada + ", MAIL: " + mailUserSesionIniciada + ", PASS: " + passUserSesionIniciada);
-        AlertDialogsUtil.mostrarError(this,"ID: " + PantallaIniciarSesion.ID_USER + ", NAME: " + PantallaIniciarSesion.FULLNAME_USER + ", MAIL: " + PantallaIniciarSesion.MAIL_USER + ", PASS: " + PantallaIniciarSesion.PASS_USER);
+//        AlertDialogsUtil.mostrarError(this,"ID: " + PantallaIniciarSesion.ID_USER + ", NAME: " + PantallaIniciarSesion.FULLNAME_USER + ", MAIL: " + PantallaIniciarSesion.MAIL_USER + ", PASS: " + PantallaIniciarSesion.PASS_USER);
 
         // BOTTOM NAVIGATION BAR
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -221,7 +221,7 @@ public class PantallaConnections extends AppCompatActivity{
                 String ip = connectionsList.get(position).getIp();
 
                 RequestQueue queue = Volley.newRequestQueue(PantallaConnections.this);
-                String url = "http://" + ip + "/checkconnection";
+                String url = "http://" + ip + "/gettemperatura";
 //              Log.d("IP A LA QUE ME INTENTO CONECTAR: ",url);
 
                 // Request a string response from the provided URL.
@@ -230,6 +230,7 @@ public class PantallaConnections extends AppCompatActivity{
 //                          Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(PantallaConnections.this, PantallaConnection.class);
                             i.putExtra("ip",ip);
+                            i.putExtra("tempActual",response);
                             startActivity(i);
                         },
                         error -> {

@@ -22,6 +22,7 @@ public class PantallaConnection extends AppCompatActivity {
     private final String TAG = ":::TAG: ";
 
     private String ip;
+    private String tempActual;
     private float tempDeseada = 20.0F;
     private String tempDeseadaString;
 
@@ -32,6 +33,7 @@ public class PantallaConnection extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         ip = bundle.getString("ip");
+        tempActual = bundle.getString("tempActual");
 
         etNumero_PantallaConnection = findViewById(R.id.etNumero_PantallaConnection);
         etNumero_PantallaConnection.setKeyListener(null); // PARA QUE NO SE PUEDA INSERTAR UN NUMERO
@@ -41,6 +43,8 @@ public class PantallaConnection extends AppCompatActivity {
 
         tempDeseadaString = Float.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
+
+        tvTempActual_PantallaConnection.setText("Temperatura actual: " + tempActual);
     }
 
 
