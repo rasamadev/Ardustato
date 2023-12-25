@@ -3,6 +3,7 @@ package com.rasamadev.ardustato.ui;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.activity.OnBackPressedCallback;
@@ -35,6 +38,7 @@ import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 import com.rasamadev.ardustato.utils.AdapterConnections;
 import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PantallaConnections extends AppCompatActivity{
@@ -216,12 +220,22 @@ public class PantallaConnections extends AppCompatActivity{
 
         // AL PULSAR EN UNA CONEXION DE LA LISTA
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String ip = connectionsList.get(position).getIp();
 
+                // RECOGEMOS LA FECHA Y HORA DEL SISTEMA
+                LocalDateTime localDate = LocalDateTime.now();
+                int hora  = localDate.getHour();
+                int minutos = localDate.getMinute();
+                int segundos = localDate.getSecond();
+                int dia = localDate.getDayOfMonth();
+                int mes = localDate.getMonthValue();
+                int anyo = localDate.getYear();
+
                 RequestQueue queue = Volley.newRequestQueue(PantallaConnections.this);
-                String url = "http://" + ip + "/gettemperatura";
+                String url = "http://" + ip + "/firstconnection?hora=" + hora + "&minutos=" + minutos + "&segundos=" + segundos + "&dia=" + dia + "&mes=" + mes + "&anyo=" + anyo;
 //              Log.d("IP A LA QUE ME INTENTO CONECTAR: ",url);
 
                 // Request a string response from the provided URL.
