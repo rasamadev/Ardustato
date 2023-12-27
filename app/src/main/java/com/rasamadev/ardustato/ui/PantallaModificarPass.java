@@ -37,11 +37,11 @@ public class PantallaModificarPass extends AppCompatActivity {
 
         // SI LA NUEVA CONTRASEÑA Y LA "CONFIRMAR CONTRASEÑA" NO COINCIDEN
         if(!nuevapass.equals(confirmarpass)){
-            AlertDialogsUtil.mostrarError(this,"¡Las contraseñas nuevas no coinciden!");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","¡Las contraseñas nuevas no coinciden!");
         }
         // SI LA CONTRASEÑA VIEJA INTRODUCIDA NO ES IGUAL QUE LA CONTRASEÑA VIEJA ESTABLECIDA
         else if(!pass.equals(PantallaIniciarSesion.PASS_USER)){
-            AlertDialogsUtil.mostrarError(this,"La contraseña actual que has introducido es incorrecta.");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","La contraseña actual que has introducido es incorrecta.");
         }
         else{
             // MODIFICAR PASS

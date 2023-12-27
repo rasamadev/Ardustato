@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,10 +14,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rasamadev.ardustato.R;
+import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
 public class PantallaConnection extends AppCompatActivity {
     private EditText etNumero_PantallaConnection;
-    private TextView tvRespuesta_PantallaConnection;
     private TextView tvTempActual_PantallaConnection;
     private TextView tvTempDeseada_PantallaConnection;
     private final String TAG = ":::TAG: ";
@@ -37,20 +38,19 @@ public class PantallaConnection extends AppCompatActivity {
 
         etNumero_PantallaConnection = findViewById(R.id.etNumero_PantallaConnection);
         etNumero_PantallaConnection.setKeyListener(null); // PARA QUE NO SE PUEDA INSERTAR UN NUMERO
-        tvRespuesta_PantallaConnection = findViewById(R.id.tvRespuesta_PantallaConnection);
         tvTempActual_PantallaConnection = findViewById(R.id.tvTempActual_PantallaConnection);
         tvTempDeseada_PantallaConnection = findViewById(R.id.tvTempDeseada_PantallaConnection);
 
         tempDeseadaString = Float.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
 
-        tvTempActual_PantallaConnection.setText("Temperatura actual: " + tempActual);
+        tvTempActual_PantallaConnection.setText(tempActual);
     }
 
 
     public void EnviarNumero(View view) {
         Log.d(TAG,"NUMERO ENVIADO");
-        tvTempDeseada_PantallaConnection.setText("Temperatura deseada: " + etNumero_PantallaConnection.getText().toString());
+        tvTempDeseada_PantallaConnection.setText(etNumero_PantallaConnection.getText().toString());
 
         Float numero = Float.parseFloat(etNumero_PantallaConnection.getText().toString());
 
@@ -61,11 +61,12 @@ public class PantallaConnection extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     // Display the first 500 characters of the response string.
-                    tvRespuesta_PantallaConnection.setText("Response is: "+ response);
+//                    tvRespuesta_PantallaConnection.setText("Response is: "+ response);
+                    AlertDialogsUtil.mostrarMensaje(this,"ENVIADO","Respuesta del servidor:\n" + response);
                 },
                 error -> {
-                    tvRespuesta_PantallaConnection.setText("That didn't work!");
-                    System.out.println(error.networkResponse);
+//                    tvRespuesta_PantallaConnection.setText("That didn't work!");
+                    AlertDialogsUtil.mostrarMensaje(this,"ERROR","No se ha podido enviar la temperatura.\nCausa del error: " + error);
                 }
         );
 
@@ -73,21 +74,18 @@ public class PantallaConnection extends AppCompatActivity {
     }
 
     public void bajarTemperatura(View view) {
-        tvRespuesta_PantallaConnection.setText("");
         tempDeseada-=0.5;
         tempDeseadaString = Double.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
     }
 
     public void subirTemperatura(View view) {
-        tvRespuesta_PantallaConnection.setText("");
         tempDeseada+=0.5;
         tempDeseadaString = Double.toString(tempDeseada);
         etNumero_PantallaConnection.setText(tempDeseadaString);
     }
 
     public void ActualizarTemp(View view) {
-        tvRespuesta_PantallaConnection.setText("");
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://" + ip + "/gettemperatura";
@@ -96,15 +94,14 @@ public class PantallaConnection extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     if(response.equals("nan")){
-                        tvTempActual_PantallaConnection.setText("Temperatura actual: ERROR");
+                        tvTempActual_PantallaConnection.setText("ERROR");
                     }
                     else{
-                        tvTempActual_PantallaConnection.setText("Temperatura actual: " + response);
+                        tvTempActual_PantallaConnection.setText(response);
                     }
                 },
                 error -> {
-                    tvRespuesta_PantallaConnection.setText("Error al actualizar la temperatura!");
-                    System.out.println(error.networkResponse);
+                    Toast.makeText(this, "Error al actualizar la temperatura! " + error, Toast.LENGTH_SHORT).show();
                 }
         );
 

@@ -9,7 +9,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rasamadev.ardustato.R;
-import com.rasamadev.ardustato.models.User;
 import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
@@ -36,12 +35,12 @@ public class PantallaPassOlvidada extends AppCompatActivity {
 
         // SI NO HA ESCRITO NADA
         if(mail.equals("")){
-            AlertDialogsUtil.mostrarError(this,"Por favor, introduce tu correo electronico.");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","Por favor, introduce tu correo electronico.");
         }
         else{
             pass = datos.selectPassByMail(mail);
             if(pass.equals("")){
-                AlertDialogsUtil.mostrarError(this,"No existe ningun usuario con ese correo.");
+                AlertDialogsUtil.mostrarMensaje(this,"ERROR","No existe ningun usuario con ese correo.");
             }
             else{
 //                AlertDialogsUtil.mostrarError(this,"CONTRASEÑA: " + pass);

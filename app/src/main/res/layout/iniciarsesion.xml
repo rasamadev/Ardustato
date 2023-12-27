@@ -10,7 +10,7 @@
         android:id="@+id/tvCorreo_IniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="32dp"
         android:text="Correo"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,12 +18,12 @@
 
     <EditText
         android:id="@+id/etCorreo_IniciarSesion"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCorreo_IniciarSesion" />
 
@@ -31,7 +31,7 @@
         android:id="@+id/tvPass_IniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="32dp"
         android:text="Contraseña"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,12 +39,12 @@
 
     <EditText
         android:id="@+id/etPass_IniciarSesion"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPass_IniciarSesion" />
 

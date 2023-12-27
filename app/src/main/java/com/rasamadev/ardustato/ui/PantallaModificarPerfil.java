@@ -40,10 +40,10 @@ public class PantallaModificarPerfil extends AppCompatActivity {
 
         // SI EL USUARIO NO HA MODIFICADO NADA
         if(fullname.equals(PantallaIniciarSesion.FULLNAME_USER) && mail.equals(PantallaIniciarSesion.MAIL_USER)){
-            AlertDialogsUtil.mostrarError(this,"¡NO HAS MODIFICADO NADA!");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","¡NO HAS MODIFICADO NADA!");
         }
-        // SI SE INTENTA CAMBIAR EL CORREO A UNO QUE YA EXISTE EN LA BBDD
-        else if(mailexistente.equals(mail)){
+        // SI ESCRIBIMOS OTRO CORREO DIFERENTE AL NUESTRO Y YA EXISTE EN LA BBDD.
+        else if(mailexistente.equals(mail) && !mail.equals(PantallaIniciarSesion.MAIL_USER)){
             Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
         }
         else{

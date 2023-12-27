@@ -10,13 +10,13 @@
         android:id="@+id/etNumero_PantallaConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="number"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnActualizarTempActual_PantallaConnection" />
 
     <Button
         android:id="@+id/btnEnviar_PantallaConnection"
@@ -29,67 +29,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNumero_PantallaConnection" />
 
-    <TextView
-        android:id="@+id/tvRespuesta_PantallaConnection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviar_PantallaConnection" />
-
     <Button
         android:id="@+id/btnMenos_PantallaConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-"
+        android:layout_marginTop="32dp"
         android:onClick="bajarTemperatura"
+        android:text="-"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/etNumero_PantallaConnection"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnActualizarTempActual_PantallaConnection" />
 
     <Button
         android:id="@+id/btnMas_PantallaConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
         android:onClick="subirTemperatura"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="+"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etNumero_PantallaConnection"
+        app:layout_constraintTop_toTopOf="@+id/etNumero_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvTempDeseadaLabel_PantallaConnection"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:text="Temperatura programada"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTempDeseada_PantallaConnection"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="-"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempDeseadaLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvTempActualLabel_PantallaConnection"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:text="Temperatura actual"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTempActual_PantallaConnection"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="64dp"
-        android:text="Temperatura actual: "
-        app:layout_constraintBottom_toTopOf="@+id/etNumero_PantallaConnection"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTempDeseada_PantallaConnection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Temperatura deseada: "
-        app:layout_constraintBottom_toTopOf="@+id/tvTempActual_PantallaConnection"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/btnActualizarTemp_PantallaConnection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ActualizarTemp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTempActual_PantallaConnection"
+        android:layout_marginEnd="32dp"
+        android:text="-"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvTempActual_PantallaConnection"
-        app:layout_constraintTop_toTopOf="@+id/tvTempActual_PantallaConnection"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTempActualLabel_PantallaConnection" />
+
+    <Button
+        android:id="@+id/btnActualizarTempActual_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="ActualizarTemp"
+        android:text="ACTUALIZAR TEMPERATURA ACTUAL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempDeseada_PantallaConnection" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

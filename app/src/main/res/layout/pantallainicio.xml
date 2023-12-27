@@ -7,36 +7,51 @@
     tools:context=".ui.PantallaInicio">
 
     <ImageView
+        android:id="@+id/ivFondo_PantallaInicio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.35"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/fondo_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
         android:minWidth="200dp"
         android:minHeight="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <Button
-        android:id="@+id/btnIniciar"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnIniciar_PantallaInicio"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="INICIAR SESION"
+        android:layout_marginTop="164dp"
         android:onClick="PantallaIniciarSesion"
+        android:text="INICIAR SESION"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/btnCrear"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnCrear_PantallaInicio"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="CREAR CUENTA"
         android:onClick="PantallaCrearCuenta"
+        android:text="CREAR CUENTA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciar_PantallaInicio" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

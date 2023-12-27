@@ -110,7 +110,8 @@ public class PantallaConnections extends AppCompatActivity{
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Toast.makeText(PantallaConnections.this, "CERRAR APLICACION", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PantallaConnections.this, "CERRAR APLICACION", Toast.LENGTH_SHORT).show();
+
                 // SALIR DE LA APP
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
@@ -197,6 +198,26 @@ public class PantallaConnections extends AppCompatActivity{
         return true;
     }
 
+    // OPCIONES MENU ACTIONBAR
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.acercade_menu_actionbar){
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setTitle("ACERCA DE");
+//            builder.setMessage("Aplicacion desarrollada por Raúl Sastre Martin, con la colaboracion de Juan Carlos Sastre Gómez respecto a la parte de Arduino.\n\nGithub: https://github.com/rasamadev/Ardustato");
+//            builder.setCancelable(false);
+//            builder.setPositiveButton("ACEPTAR",null);
+//            builder.create();
+//            builder.show();
+
+            AlertDialogsUtil.mostrarMensaje(this,"ACERCA DE","Aplicacion desarrollada por Raúl Sastre Martin, con la colaboracion de Juan Carlos Sastre Gómez respecto a la parte de Arduino.\n\nGithub: https://github.com/rasamadev/Ardustato");
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void cargarConnections(){
         lista = connections.findViewById(R.id.listViewConnections);
         tvNoHayConnections_PantallaConnections = connections.findViewById(R.id.tvNoHayConnections_PantallaConnections);
@@ -249,7 +270,7 @@ public class PantallaConnections extends AppCompatActivity{
                         },
                         error -> {
 //                          Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
-                            AlertDialogsUtil.mostrarError(PantallaConnections.this,"No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
+                            AlertDialogsUtil.mostrarMensaje(PantallaConnections.this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
                         });
 
                 queue.add(stringRequest);
@@ -272,20 +293,23 @@ public class PantallaConnections extends AppCompatActivity{
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaConnections.this);
                 builder.setTitle("CONFIRMACION");
-                builder.setMessage("¿Estas seguro de borrar esta conexion con ID: " + idConnection + " Y POSICION: " + position + "?");
+//                builder.setMessage("¿Estas seguro de borrar esta conexion con ID: " + idConnection + " Y POSICION: " + position + "?");
+                builder.setMessage("¿Estas seguro de borrar esta conexion? Una vez haya sido borrada, no se podra recuperar.");
                 builder.setCancelable(false);
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 //                        datos.deleteConnectionById(Long.toString(id));
-                        Toast.makeText(PantallaConnections.this, "BORRADAS: " + datos.deleteConnectionById(idConnection) + " CONEXIONES", Toast.LENGTH_SHORT).show();
+                        datos.deleteConnectionById(idConnection);
+//                        Toast.makeText(PantallaConnections.this, "BORRADAS: " + datos.deleteConnectionById(idConnection) + " CONEXIONES", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PantallaConnections.this, "Conexion borrada con exito", Toast.LENGTH_SHORT).show();
                         cargarConnections();
                     }
                 });
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(PantallaConnections.this, "NO SE HA PODIDO BORRAR", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(PantallaConnections.this, "NO SE HA PODIDO BORRAR", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.create();

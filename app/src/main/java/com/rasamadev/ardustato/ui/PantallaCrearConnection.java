@@ -2,10 +2,8 @@ package com.rasamadev.ardustato.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +14,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rasamadev.ardustato.R;
 import com.rasamadev.ardustato.models.Connection;
-import com.rasamadev.ardustato.models.User;
 import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
@@ -49,7 +46,7 @@ public class PantallaCrearConnection extends AppCompatActivity {
 
         // SI NO HEMOS ESCRITO NADA EN EL CAMPO DE LA IP
         if(ip.equals("")){
-            AlertDialogsUtil.mostrarError(this,"Por favor, introduce una direccion IP.");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","Por favor, introduce una direccion IP.");
         }
         else{
             // PRUEBA DE CONEXION A LA IP ESCRITA
@@ -60,11 +57,11 @@ public class PantallaCrearConnection extends AppCompatActivity {
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     response -> {
 //                        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-                        AlertDialogsUtil.mostrarError(this,response);
+                        AlertDialogsUtil.mostrarMensaje(this,"ERROR",response);
                     },
                     error -> {
 //                    Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
-                        AlertDialogsUtil.mostrarError(this,"No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
+                        AlertDialogsUtil.mostrarMensaje(this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
                     });
 
             queue.add(stringRequest);
@@ -76,12 +73,12 @@ public class PantallaCrearConnection extends AppCompatActivity {
         String ipconnection = etIpConnection_PantallaCrearConnection.getText().toString();
 
         if(nombreconnection.equals("") || ipconnection.equals("")){
-            AlertDialogsUtil.mostrarError(this,"Por favor, introduce todos los datos.");
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","Por favor, introduce todos los datos.");
         }
         else{
             // COMPROBAR EN LA TABLA connections SI EXISTE UNA CONEXION CON MISMO NOMBRE E IP
             if(comprobarConnectionExistente(nombreconnection,ipconnection)){
-                AlertDialogsUtil.mostrarError(this,"¡YA EXISTE UNA CONEXION CON EL MISMO NOMBRE E IP!");
+                AlertDialogsUtil.mostrarMensaje(this,"ERROR","¡YA EXISTE UNA CONEXION CON EL MISMO NOMBRE E IP!");
             }
             else{
                 // INSERTAMOS LA CONEXION
