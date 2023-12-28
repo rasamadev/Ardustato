@@ -36,6 +36,7 @@ public class PantallaConnection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connection);
 
+        // Recuperamos los extras traspasados de la clase "PantallaConnections"
         Bundle bundle = getIntent().getExtras();
         ip = bundle.getString("ip");
         tempActual = bundle.getString("tempActual");
@@ -48,21 +49,24 @@ public class PantallaConnection extends AppCompatActivity {
 
         tempDeseadaFloat = Float.parseFloat(tempDeseada);
 
+        // Establecemos en los TextView y EditText de la pantalla las temperaturas
         etNumero_PantallaConnection.setText(tempDeseada);
         tvTempActual_PantallaConnection.setText(tempActual);
         tvTempDeseada_PantallaConnection.setText(tempDeseada);
     }
 
-
+    /**
+     * BOTON DE "ENVIAR"
+     * @param view
+     */
     public void EnviarNumero(View view) {
-//        Log.d(TAG,"NUMERO ENVIADO");
-
         // PONEMOS EN EL CAMPO DE TEMPERATURA DESEADA LA TEMPERATURA QUE ACABAMOS DE PROGRAMAR
         tvTempDeseada_PantallaConnection.setText(etNumero_PantallaConnection.getText().toString());
 
         // CONVERTIMOS A FLOAT LA TEMPERATURA QUE ACABAMOS DE PROGRAMAR
         Float temperaturaprogramada = Float.parseFloat(etNumero_PantallaConnection.getText().toString());
 
+        // HTTP REQUEST PARA ESTABLECER LA TEMPERATURA DESEADA EN EL ARDUINO
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://" + ip + "/settemperatura?temperatura=" + temperaturaprogramada;
 
@@ -78,19 +82,33 @@ public class PantallaConnection extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    /**
+     * BOTON DE "-" PARA BAJAR 0.5 GRADOS LA TEMPERATURA
+     * @param view
+     */
     public void bajarTemperatura(View view) {
         tempDeseadaFloat-=0.50;
         tempDeseada = Float.toString(tempDeseadaFloat);
         etNumero_PantallaConnection.setText(tempDeseada);
     }
 
+    /**
+     * BOTON DE "+" PARA SUBIR 0.5 GRADOS LA TEMPERATURA
+     * @param view
+     */
     public void subirTemperatura(View view) {
         tempDeseadaFloat+=0.50;
         tempDeseada = Float.toString(tempDeseadaFloat);
         etNumero_PantallaConnection.setText(tempDeseada);
     }
 
+    /**
+     * BOTON DE "ACTUALIZAR TEMPERATURA ACTUAL" PARA "REFRESCAR" LA TEMPERATURA ACTUAL QUE DETECTE
+     * EL ARDUINO
+     * @param view
+     */
     public void ActualizarTemp(View view) {
+        // HTTP REQUEST PARA RECIBIR DEL ARDUINO LA TEMPERATURA ACTUAL
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://" + ip + "/gettemperatura";
 

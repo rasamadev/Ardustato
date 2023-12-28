@@ -14,8 +14,10 @@ import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
 public class PantallaModificarPerfil extends AppCompatActivity {
 
+    // ELEMENTOS PANTALLA
     private EditText etFullname_ModificarPerfil, etMail_ModificarPerfil;
 
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
     @Override
@@ -26,6 +28,7 @@ public class PantallaModificarPerfil extends AppCompatActivity {
         etFullname_ModificarPerfil = findViewById(R.id.etFullname_ModificarPerfil);
         etMail_ModificarPerfil = findViewById(R.id.etMail_ModificarPerfil);
 
+        // ESTABLECEMOS EN LOS EditText DE LA PANTALLA EL NOMBRE Y CORREO DEL USUARIO
         etFullname_ModificarPerfil.setText(PantallaIniciarSesion.FULLNAME_USER);
         etMail_ModificarPerfil.setText(PantallaIniciarSesion.MAIL_USER);
 
@@ -43,8 +46,10 @@ public class PantallaModificarPerfil extends AppCompatActivity {
             AlertDialogsUtil.mostrarMensaje(this,"ERROR","¡NO HAS MODIFICADO NADA!");
         }
         // SI ESCRIBIMOS OTRO CORREO DIFERENTE AL NUESTRO Y YA EXISTE EN LA BBDD.
+        // ESTO SE HACE ASI PARA QUE, SI NO MODIFICAMOS EL CORREO, NOS DEJE CONTINUAR
+        // Y NO VEA QUE, EVIDENTEMENTE, YA EXISTE EN LA BBDD
         else if(mailexistente.equals(mail) && !mail.equals(PantallaIniciarSesion.MAIL_USER)){
-            Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
+            AlertDialogsUtil.mostrarMensaje(this,"ERROR","Ya existe una cuenta con la direccion de correo proporcionada. Por favor, indique otra cuenta diferente.");
         }
         else{
             // MODIFICAR PERFIL

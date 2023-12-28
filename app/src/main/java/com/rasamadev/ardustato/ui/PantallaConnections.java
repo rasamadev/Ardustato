@@ -46,12 +46,8 @@ import java.util.List;
 
 public class PantallaConnections extends AppCompatActivity{
 
-    // ATRIBUTOS BBDD (Y DATOS USUARIO SESION INICIADA)
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
-//    private String idUserSesionIniciada;
-//    private String fullnameUserSesionIniciada;
-//    private String mailUserSesionIniciada;
-//    private String passUserSesionIniciada;
 
     // ELEMENTOS PAGINA CONEXIONES
     private ViewPager pagerConnections;
@@ -86,16 +82,7 @@ public class PantallaConnections extends AppCompatActivity{
         // ACTIVAMOS TOOLBAR
         setSupportActionBar(toolbar);
 
-        // RECUPERAMOS LOS DATOS DEL USUARIO QUE HA INICIADO SESION
-//        Bundle bundle = getIntent().getExtras();
-//        idUserSesionIniciada = bundle.getString("id");
-//        fullnameUserSesionIniciada = bundle.getString("fullname");
-//        mailUserSesionIniciada = bundle.getString("mail");
-//        passUserSesionIniciada = bundle.getString("pass");
-//        AlertDialogsUtil.mostrarError(this,"ID: " + idUserSesionIniciada + ", NAME: " + fullnameUserSesionIniciada + ", MAIL: " + mailUserSesionIniciada + ", PASS: " + passUserSesionIniciada);
-//        AlertDialogsUtil.mostrarError(this,"ID: " + PantallaIniciarSesion.ID_USER + ", NAME: " + PantallaIniciarSesion.FULLNAME_USER + ", MAIL: " + PantallaIniciarSesion.MAIL_USER + ", PASS: " + PantallaIniciarSesion.PASS_USER);
-
-        // BOTTOM NAVIGATION BAR
+        // CONTROL BOTONES "BOTTOMNAVIGATIONBAR"
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -113,8 +100,6 @@ public class PantallaConnections extends AppCompatActivity{
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-//                Toast.makeText(PantallaConnections.this, "CERRAR APLICACION", Toast.LENGTH_SHORT).show();
-
                 // SALIR DE LA APP
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
@@ -179,7 +164,7 @@ public class PantallaConnections extends AppCompatActivity{
                         bottomNav.setSelectedItemId(R.id.itPerfil);
                         break;
                 }
-//                super.onPageSelected(position);
+                // super.onPageSelected(position);
             }
 
             @Override
@@ -207,14 +192,6 @@ public class PantallaConnections extends AppCompatActivity{
         int id = item.getItemId();
 
         if(id == R.id.acercade_menu_actionbar){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setTitle("ACERCA DE");
-//            builder.setMessage("Aplicacion desarrollada por Raúl Sastre Martin, con la colaboracion de Juan Carlos Sastre Gómez respecto a la parte de Arduino.\n\nGithub: https://github.com/rasamadev/Ardustato");
-//            builder.setCancelable(false);
-//            builder.setPositiveButton("ACEPTAR",null);
-//            builder.create();
-//            builder.show();
-
             AlertDialogsUtil.mostrarMensaje(this,"ACERCA DE","Aplicacion desarrollada por Raúl Sastre Martin, con la colaboracion de Juan Carlos Sastre Gómez respecto a la parte de Arduino.\n\nGithub: https://github.com/rasamadev/Ardustato");
         }
 
@@ -239,7 +216,6 @@ public class PantallaConnections extends AppCompatActivity{
 
             AdapterConnections adapterconnections = new AdapterConnections(this, R.layout.connection_item, connectionsList);
             lista.setAdapter(adapterconnections);
-//            lista.setOnItemClickListener(this);
         }
 
         // AL PULSAR EN UNA CONEXION DE LA LISTA
@@ -260,7 +236,6 @@ public class PantallaConnections extends AppCompatActivity{
 
                 RequestQueue queue = Volley.newRequestQueue(PantallaConnections.this);
                 String url = "http://" + ip + "/firstconnection?hora=" + hora + "&minutos=" + minutos + "&segundos=" + segundos + "&dia=" + dia + "&mes=" + mes + "&anyo=" + anyo;
-//              Log.d("IP A LA QUE ME INTENTO CONECTAR: ",url);
 
                 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -279,11 +254,8 @@ public class PantallaConnections extends AppCompatActivity{
                         catch(JSONException e) {
                             throw new RuntimeException(e);
                         }
-
-//                      Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
                     },
                     error -> {
-//                      Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
                         AlertDialogsUtil.mostrarMensaje(PantallaConnections.this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
                     });
 
@@ -295,27 +267,16 @@ public class PantallaConnections extends AppCompatActivity{
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(PantallaConnections.this, "Pulsacion larga en la posicion: " + position + ", ID: " + id, Toast.LENGTH_SHORT).show();
-//                if(AlertDialogsUtil.mostrarConfirmacion(PantallaConnections.this,"¿Estas seguro de borrar esta conexion?")){
-//                    Toast.makeText(PantallaConnections.this, "ID: " + Long.toString(id), Toast.LENGTH_SHORT).show();
-//                    datos.deleteConnectionById(Long.toString(id));
-//                }
-//                else{
-//                    Toast.makeText(PantallaConnections.this, "NO SE HA PODIDO BORRAR", Toast.LENGTH_SHORT).show();
-//                }
                 String idConnection = connectionsList.get(position).getId();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PantallaConnections.this);
                 builder.setTitle("CONFIRMACION");
-//                builder.setMessage("¿Estas seguro de borrar esta conexion con ID: " + idConnection + " Y POSICION: " + position + "?");
                 builder.setMessage("¿Estas seguro de borrar esta conexion? Una vez haya sido borrada, no se podra recuperar.");
                 builder.setCancelable(false);
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        datos.deleteConnectionById(Long.toString(id));
                         datos.deleteConnectionById(idConnection);
-//                        Toast.makeText(PantallaConnections.this, "BORRADAS: " + datos.deleteConnectionById(idConnection) + " CONEXIONES", Toast.LENGTH_SHORT).show();
                         Toast.makeText(PantallaConnections.this, "Conexion borrada con exito", Toast.LENGTH_SHORT).show();
                         cargarConnections();
                     }
@@ -323,7 +284,7 @@ public class PantallaConnections extends AppCompatActivity{
                 builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(PantallaConnections.this, "NO SE HA PODIDO BORRAR", Toast.LENGTH_SHORT).show();
+                        // ESTE BOTON SIMPLEMENTE CIERRA EL ALERTDIALOG
                     }
                 });
                 builder.create();
@@ -338,30 +299,6 @@ public class PantallaConnections extends AppCompatActivity{
         tvFullname_Perfil = perfil.findViewById(R.id.tvFullname_Perfil);
         tvFullname_Perfil.setText(PantallaIniciarSesion.FULLNAME_USER);
     }
-
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        String ip = connectionsList.get(position).getIp();
-//
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        String url = "http://" + ip + "/checkconnection";
-////        Log.d("IP A LA QUE ME INTENTO CONECTAR: ",url);
-//
-//        // Request a string response from the provided URL.
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                response -> {
-////                    Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-//                    Intent i = new Intent(this, PantallaConnection.class);
-//                    i.putExtra("ip",ip);
-//                    startActivity(i);
-//                },
-//                error -> {
-////                    Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
-//                    AlertDialogsUtil.mostrarError(this,"No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
-//                });
-//
-//        queue.add(stringRequest);
-//    }
 
     // BOTON FLOTANTE, LLEVA A LA PANTALLA PARA CREAR UNA NUEVA CONEXION
     public void PantallaCrearConnection(View view) {

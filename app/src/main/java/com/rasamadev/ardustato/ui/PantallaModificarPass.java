@@ -14,8 +14,10 @@ import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
 public class PantallaModificarPass extends AppCompatActivity {
 
+    // ELEMENTOS PANTALLA
     private EditText etPass_ModificarPass,etNuevaPass_ModificarPass,etConfirmarPass_ModificarPass;
 
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
     @Override

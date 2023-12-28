@@ -14,8 +14,10 @@ import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
 public class PantallaPassOlvidada extends AppCompatActivity {
 
+    // ELEMENTOS PANTALLA
     private EditText etMail_PassOlvidada;
 
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
     @Override
@@ -38,12 +40,17 @@ public class PantallaPassOlvidada extends AppCompatActivity {
             AlertDialogsUtil.mostrarMensaje(this,"ERROR","Por favor, introduce tu correo electronico.");
         }
         else{
+            // RECOGEMOS LA CONTRASEÑA DEL USUARIO QUE TENGA EL EMAIL INTRODUCIDO.
             pass = datos.selectPassByMail(mail);
+
+            // SI EL USUARIO NO EXISTE
             if(pass.equals("")){
                 AlertDialogsUtil.mostrarMensaje(this,"ERROR","No existe ningun usuario con ese correo.");
             }
             else{
-//                AlertDialogsUtil.mostrarError(this,"CONTRASEÑA: " + pass);
+
+                // PENDIENTE IMPLEMENTAR ENVIO CORREOS!
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("CONTRASEÑA ENVIADA");
                 builder.setMessage("Se ha enviado la contraseña a su cuenta de correo. Por motivos de seguridad, asegurese de cambiarla nada mas iniciar sesion en la aplicacion.");

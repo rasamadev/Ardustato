@@ -29,8 +29,7 @@ public class BaseDatosArdustato extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, fullname VARCHAR(30), mail VARCHAR(30), pass VARCHAR(30))");
-        db.execSQL("CREATE TABLE connections(id INTEGER PRIMARY KEY AUTOINCREMENT, connectionname VARCHAR(20), ip VARCHAR(20), userid INT, FOREIGN KEY (userid) REFERENCES users(id))");
-        // HAY QUE PONER QUE LA FOREIGN KEY SEA ON DELETE CASCADE!!!
+        db.execSQL("CREATE TABLE connections(id INTEGER PRIMARY KEY AUTOINCREMENT, connectionname VARCHAR(20), ip VARCHAR(20), userid INT, FOREIGN KEY (userid) REFERENCES users(id) ON DELETE CASCADE)");
     }
 
     @Override

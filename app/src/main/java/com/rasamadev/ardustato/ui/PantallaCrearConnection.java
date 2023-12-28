@@ -18,9 +18,11 @@ import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
 public class PantallaCrearConnection extends AppCompatActivity {
+
+    // ELEMENTOS PANTALLA
     private EditText etNombreConnection_PantallaCrearConnection, etIpConnection_PantallaCrearConnection;
 
-//    private String idUserSesionIniciada;
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
 
@@ -28,11 +30,6 @@ public class PantallaCrearConnection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.crearconnection);
-
-        // RECUPERAMOS EL ID DEL USUARIO QUE HA INICIADO SESION PARA QUE, AL CREAR UNA CONNECTION,
-        // SE ASOCIE A DICHO USUARIO
-//        Bundle bundle = getIntent().getExtras();
-//        idUserSesionIniciada = bundle.getString("id");
 
         etNombreConnection_PantallaCrearConnection = findViewById(R.id.etNombreConnection_PantallaCrearConnection);
         etIpConnection_PantallaCrearConnection = findViewById(R.id.etIpConnection_PantallaCrearConnection);
@@ -55,14 +52,13 @@ public class PantallaCrearConnection extends AppCompatActivity {
 
             // Request a string response from the provided URL.
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    response -> {
-//                        Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-                        AlertDialogsUtil.mostrarMensaje(this,"ERROR",response);
-                    },
-                    error -> {
-//                    Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
-                        AlertDialogsUtil.mostrarMensaje(this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
-                    });
+                response -> {
+                    AlertDialogsUtil.mostrarMensaje(this,"EXITO",response);
+                },
+                error -> {
+                    AlertDialogsUtil.mostrarMensaje(this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
+                }
+            );
 
             queue.add(stringRequest);
         }
@@ -86,9 +82,7 @@ public class PantallaCrearConnection extends AppCompatActivity {
                 Toast.makeText(this, "Conexion creada con exito.", Toast.LENGTH_LONG).show();
 
                 // VOLVEMOS ATRAS CARGANDO DE NUEVO LAS CONEXIONES
-//                getOnBackPressedDispatcher().onBackPressed();
                 Intent i = new Intent(this, PantallaConnections.class);
-                i.putExtra("id",PantallaIniciarSesion.ID_USER);
                 startActivity(i);
             }
         }

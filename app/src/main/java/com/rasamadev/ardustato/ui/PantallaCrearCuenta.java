@@ -14,7 +14,11 @@ import com.rasamadev.ardustato.models.User;
 import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 
 public class PantallaCrearCuenta extends AppCompatActivity {
+
+    // ELEMENTOS PANTALLA
     private EditText etNombreCompleto_CrearCuenta, etCorreo_CrearCuenta, etPass_CrearCuenta;
+
+    // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
     @Override
@@ -34,18 +38,14 @@ public class PantallaCrearCuenta extends AppCompatActivity {
         String mail = etCorreo_CrearCuenta.getText().toString();
         String pass = etPass_CrearCuenta.getText().toString();
 
-        // AÑADIR PATRONES COMPROBACION CORREO??
-        // AÑADIR PASSWORD MINIMO 8 CARACTERES??
-
+        // SI NO SE HAN RELLENADO TODOS LOS CAMPOS
         if(fullname.equals("") || mail.equals("") || pass.equals("")){
             Toast.makeText(this, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show();
         }
         else{
-//            if(comprobacionMail(mail)){
-//                Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
-//            }
             // COMPROBAMOS EN LA BBDD SI YA EXISTE UNA CUENTA CON EL CORREO ELECTRONICO INTRODUCIDO.
             String mailexistente = datos.comprobacionMail(mail);
+
             if(mailexistente.equals(mail)){
                 Toast.makeText(this, "Ya existe una cuenta con la direccion de correo proporcionada.", Toast.LENGTH_LONG).show();
             }
@@ -59,17 +59,4 @@ public class PantallaCrearCuenta extends AppCompatActivity {
             }
         }
     }
-
-//    private boolean comprobacionMail(String mail){
-//        boolean existe = false;
-//
-//        for(User u: datos.selectUsers()){
-//            if(u.getMail().equals(mail)){
-//                existe = true;
-//                break;
-//            }
-//        }
-//
-//        return existe;
-//    }
 }

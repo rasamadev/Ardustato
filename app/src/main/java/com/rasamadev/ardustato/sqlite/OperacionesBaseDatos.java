@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Usa patron Singleton.
+ * Esta clase usa patron Singleton.
  */
 public class OperacionesBaseDatos {
     private static BaseDatosArdustato baseDatos;
@@ -31,12 +31,14 @@ public class OperacionesBaseDatos {
         return instancia;
     }
 
+    // -------------------- METODOS SELECT --------------------
+
     public List<User> selectUsers(){
         SQLiteDatabase db = baseDatos.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query. (NO SE USA, SE PONE null)
-        String[] projection = {"id","fullname","mail","pass"};
+        // String[] projection = {"id","fullname","mail","pass"};
 
         Cursor cursor = db.query("users",null,null,null,null,null,null);
         List<User> users = new ArrayList<>();
@@ -54,37 +56,12 @@ public class OperacionesBaseDatos {
         return users;
     }
 
-//    public User selectUserById(String idUser){
-//        SQLiteDatabase db = baseDatos.getReadableDatabase();
-//
-//        User u = new User("","","","");
-//
-//        // Filter results WHERE "id" = 'idUser'
-//        String selection = "id = ?";
-//        String[] selectionArgs = {idUser};
-//
-//        Cursor cursor = db.query("users",null,selection,selectionArgs,null,null,null);
-//        while(cursor.moveToNext()) {
-//            String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
-//            String fullname = cursor.getString(cursor.getColumnIndexOrThrow("fullname"));
-//            String mail = cursor.getString(cursor.getColumnIndexOrThrow("mail"));
-//            String pass = cursor.getString(cursor.getColumnIndexOrThrow("pass"));
-//
-//            u.setId(id);
-//            u.setFullname(fullname);
-//            u.setMail(mail);
-//            u.setPass(pass);
-//        }
-//        cursor.close();
-//
-//        Log.d("METODO DEVOLVER USER, DEVUELVE",u.toString());
-//        return u;
-//    }
-
     public List<Connection> selectConnectionsByUser(String idUser){
         SQLiteDatabase db = baseDatos.getReadableDatabase();
 
-        String[] projection = {"id","connectionname","ip","userid"};
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query. (NO SE USA, SE PONE null)
+        // String[] projection = {"id","connectionname","ip","userid"};
 
         // Filter results WHERE "userid" = 'idUser'
         String selection = "userid = ?";
@@ -118,7 +95,6 @@ public class OperacionesBaseDatos {
         String[] selectionArgs = {mail};
 
         Cursor cursor = db.query("users",projection,selection,selectionArgs,null,null,null);
-//        List<Connection> connections = new ArrayList<>();
         while(cursor.moveToNext()) {
             pass = cursor.getString(cursor.getColumnIndexOrThrow("pass"));
         }
@@ -167,6 +143,8 @@ public class OperacionesBaseDatos {
         return fullname;
     }
 
+    // -------------------- METODOS INSERT --------------------
+
     public void insertarUser(String fullname, String mail, String pass){
         // Gets the data repository in write mode
         SQLiteDatabase db = baseDatos.getWritableDatabase();
@@ -201,6 +179,8 @@ public class OperacionesBaseDatos {
         Log.d("CREADA CONEXION: ",Long.toString(newRowId));
     }
 
+    // -------------------- METODOS UPDATE --------------------
+
     public void updateUserById(String id, String fullname, String mail){
         SQLiteDatabase db = baseDatos.getWritableDatabase();
 
@@ -230,6 +210,8 @@ public class OperacionesBaseDatos {
         int count = db.update("users", values, selection, selectionArgs);
     }
 
+    // -------------------- METODOS DELETE --------------------
+
     public void deleteUserById(String id){
         // Gets the data repository in write mode
         SQLiteDatabase db = baseDatos.getWritableDatabase();
@@ -253,6 +235,8 @@ public class OperacionesBaseDatos {
         return deletedRows;
     }
 
+    // -------------------- METODOS DE COMPROBACION EN LA BBDD --------------------
+
     public boolean comprobacionUser(String mail, String pass){
         SQLiteDatabase db = baseDatos.getReadableDatabase();
 
@@ -270,8 +254,8 @@ public class OperacionesBaseDatos {
             return false;
         }
         else{
-            // HA ENCONTRADO MAS DE UN USUARIO CON MISMO NOMBRE Y PASS???
-            // DEVOLVIENDO TRUE PROBABLEMENTE LA APLICACION DARA ERROR
+            // ENTRARIA AQUI SI ENCONTRARA MAS DE UN USUARIO CON MISMO NOMBRE Y PASS, LO CUAL ES IMPOSIBLE
+            // EN BASE A LAS RESTRICCIONES IMPUESTAS A LA HORA DE CREAR UN USUARIO.
             cursor.close();
             return true;
         }
