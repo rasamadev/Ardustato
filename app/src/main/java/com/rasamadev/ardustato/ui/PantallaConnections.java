@@ -38,6 +38,9 @@ import com.rasamadev.ardustato.sqlite.OperacionesBaseDatos;
 import com.rasamadev.ardustato.utils.AdapterConnections;
 import com.rasamadev.ardustato.utils.AlertDialogsUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -241,7 +244,7 @@ public class PantallaConnections extends AppCompatActivity{
 
         // AL PULSAR EN UNA CONEXION DE LA LISTA
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+            @RequiresApi(api = Build.VERSION_CODES.O) // LO REQUIERE "LocalDateTime"
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String ip = connectionsList.get(position).getIp();
@@ -261,17 +264,28 @@ public class PantallaConnections extends AppCompatActivity{
 
                 // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        response -> {
-//                          Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+                    response -> {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String tempActual = jsonObject.getString("tempActual");
+                            String tempDeseada = jsonObject.getString("tempDeseada");
+
                             Intent i = new Intent(PantallaConnections.this, PantallaConnection.class);
                             i.putExtra("ip",ip);
-                            i.putExtra("tempActual",response);
+                            i.putExtra("tempActual",tempActual);
+                            i.putExtra("tempDeseada",tempDeseada);
                             startActivity(i);
-                        },
-                        error -> {
-//                          Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
-                            AlertDialogsUtil.mostrarMensaje(PantallaConnections.this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
-                        });
+                        }
+                        catch(JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+//                      Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+                    },
+                    error -> {
+//                      Toast.makeText(this, "No se ha podido conectar a la IP: ." + url + ". CAUSA: " + error, Toast.LENGTH_SHORT).show();
+                        AlertDialogsUtil.mostrarMensaje(PantallaConnections.this,"ERROR","No se ha podido conectar a la IP: " + ip + ".\nCAUSA: " + error);
+                    });
 
                 queue.add(stringRequest);
             }

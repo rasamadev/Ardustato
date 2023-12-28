@@ -10,7 +10,7 @@
         android:id="@+id/tvFullname_Perfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="96dp"
         android:text=""
         android:textAlignment="center"
         android:textSize="40dp"
@@ -20,18 +20,18 @@
 
     <Button
         android:id="@+id/btnModificarPerfil_Perfil"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="MODIFICAR PERFIL"
         android:onClick="PantallaModificarPerfil"
+        android:text="MODIFICAR PERFIL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFullname_Perfil" />
 
     <Button
         android:id="@+id/btnCambiarPass_Perfil"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="PantallaCambiarPass"
@@ -42,7 +42,7 @@
 
     <Button
         android:id="@+id/btnCerrarSesion_Perfil"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:onClick="cerrarSesion"
@@ -53,11 +53,11 @@
 
     <Button
         android:id="@+id/btnEliminarCuenta_Perfil"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="ELIMINAR CUENTA"
         android:onClick="eliminarCuenta"
+        android:text="ELIMINAR CUENTA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCambiarPass_Perfil" />
