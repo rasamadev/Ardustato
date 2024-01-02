@@ -302,8 +302,6 @@ public class PantallaConnections extends AppCompatActivity{
 
     // BOTON FLOTANTE, LLEVA A LA PANTALLA PARA CREAR UNA NUEVA CONEXION
     public void PantallaCrearConnection(View view) {
-        // "EXPORTAMOS" EL ID DEL USUARIO QUE HA INICIADO SESION PARA QUE, CUANDO
-        // SE CREEN CONEXIONES SE LES ASIGNEN A ESTE
         Intent i = new Intent(this,PantallaCrearConnection.class);
         startActivity(i);
     }

@@ -25,7 +25,6 @@ public class PantallaCrearConnection extends AppCompatActivity {
     // INSTANCIA BASE DATOS
     private OperacionesBaseDatos datos;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

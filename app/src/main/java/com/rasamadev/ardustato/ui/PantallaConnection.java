@@ -24,12 +24,12 @@ public class PantallaConnection extends AppCompatActivity {
     private TextView tvTempDeseada_PantallaConnection;
 
     // ATRIBUTOS BUNDLE
-    private String ip;
-    private String tempActual;
-    private String tempDeseada;
+    private String ip;              // IP traspasada por bundle
+    private String tempActual;      // Temperatura actual traspasada por bundle
+    private String tempDeseada;     // Temperatura deseada traspasada por bundle
 
     // OTROS ATRIBUTOS
-    private float tempDeseadaFloat;
+    private float tempDeseadaFloat; // Temperatura deseada en valor float
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,11 @@ public class PantallaConnection extends AppCompatActivity {
         tempDeseada = bundle.getString("tempDeseada");
 
         etNumero_PantallaConnection = findViewById(R.id.etNumero_PantallaConnection);
-        etNumero_PantallaConnection.setKeyListener(null); // PARA QUE NO SE PUEDA INSERTAR UN NUMERO
         tvTempActual_PantallaConnection = findViewById(R.id.tvTempActual_PantallaConnection);
         tvTempDeseada_PantallaConnection = findViewById(R.id.tvTempDeseada_PantallaConnection);
+
+        // IMPEDIMOS QUE SE PUEDAN INSERTAR NUMEROS EN EL EditText
+        etNumero_PantallaConnection.setKeyListener(null);
 
         tempDeseadaFloat = Float.parseFloat(tempDeseada);
 
@@ -64,11 +66,11 @@ public class PantallaConnection extends AppCompatActivity {
         tvTempDeseada_PantallaConnection.setText(etNumero_PantallaConnection.getText().toString());
 
         // CONVERTIMOS A FLOAT LA TEMPERATURA QUE ACABAMOS DE PROGRAMAR
-        Float temperaturaprogramada = Float.parseFloat(etNumero_PantallaConnection.getText().toString());
+        tempDeseadaFloat = Float.parseFloat(etNumero_PantallaConnection.getText().toString());
 
         // HTTP REQUEST PARA ESTABLECER LA TEMPERATURA DESEADA EN EL ARDUINO
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://" + ip + "/settemperatura?temperatura=" + temperaturaprogramada;
+        String url = "http://" + ip + "/settemperatura?temperatura=" + tempDeseadaFloat;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
             response -> {
