@@ -244,11 +244,25 @@ public class PantallaConnections extends AppCompatActivity{
                             JSONObject jsonObject = new JSONObject(response);
                             String tempActual = jsonObject.getString("tempActual");
                             String tempDeseada = jsonObject.getString("tempDeseada");
+                            boolean stateProgramador;
+                            if(jsonObject.getString("stateProgramador").equals("0")){
+                                stateProgramador = false;
+                            }
+                            else{
+                                stateProgramador = true;
+                            }
+                            String horaProgramador = jsonObject.getString("horaProgramador");
+                            String minutoProgramador = jsonObject.getString("minutoProgramador");
+                            String tempProgramador = jsonObject.getString("tempProgramador");
 
                             Intent i = new Intent(PantallaConnections.this, PantallaConnection.class);
                             i.putExtra("ip",ip);
                             i.putExtra("tempActual",tempActual);
                             i.putExtra("tempDeseada",tempDeseada);
+                            i.putExtra("stateProgramador",stateProgramador);
+                            i.putExtra("horaProgramador",horaProgramador);
+                            i.putExtra("minutoProgramador",minutoProgramador);
+                            i.putExtra("tempProgramador",tempProgramador);
                             startActivity(i);
                         }
                         catch(JSONException e) {

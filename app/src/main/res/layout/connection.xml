@@ -112,4 +112,197 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTempDeseada_PantallaConnection" />
 
+    <TextView
+        android:id="@+id/tvHoraProgramadaLabel_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Hora programada: "
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvProgramadorLabel_PantallaConnection"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="PROGRAMADOR ---"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviar_PantallaConnection" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/switchProgramador_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvProgramadorLabel_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvProgramadorLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvHoraProgramada_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="--:--"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHoraProgramadaLabel_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvHoraProgramadaLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvHoraLabel_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Hora"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHoraProgramadaLabel_PantallaConnection" />
+
+    <SeekBar
+        android:id="@+id/sbHora_PantallaConnection"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHoraLabel_PantallaConnection"
+        app:layout_constraintStart_toEndOf="@+id/tvHoraLabel_PantallaConnection"
+        app:layout_constraintTop_toTopOf="@+id/tvHoraLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvMinutoLabel_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Mins"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHoraLabel_PantallaConnection" />
+
+    <SeekBar
+        android:id="@+id/sbMinuto_PantallaConnection"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMinutoLabel_PantallaConnection"
+        app:layout_constraintStart_toEndOf="@+id/tvMinutoLabel_PantallaConnection"
+        app:layout_constraintTop_toTopOf="@+id/tvMinutoLabel_PantallaConnection" />
+
+    <Button
+        android:id="@+id/btnProgramador_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="aplicarCambiosProgramador"
+        android:text="APLICAR CAMBIOS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMinutoLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvIndicadorHora_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="--"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sbHora_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sbHora_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvIndicadorMinuto_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="--"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sbMinuto_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sbMinuto_PantallaConnection" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/tvProgramadorLabel_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviar_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvTempProgramadaLabel_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Temp. programada:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvProgramadorLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvTempLabel_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Temp."
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTempProgramadaLabel_PantallaConnection" />
+
+    <TextView
+        android:id="@+id/tvTempProgramada_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="--.--"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTempProgramadaLabel_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTempProgramadaLabel_PantallaConnection" />
+
+    <ImageView
+        android:id="@+id/btnMenosProgramador_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:onClick="bajarTemperaturaProgramador"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTempLabel_PantallaConnection"
+        app:layout_constraintStart_toEndOf="@+id/tvTempLabel_PantallaConnection"
+        app:layout_constraintTop_toTopOf="@+id/tvTempLabel_PantallaConnection"
+        app:srcCompat="@drawable/baseline_remove_circle_24" />
+
+    <EditText
+        android:id="@+id/etNumeroProgramador_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMenosProgramador_PantallaConnection"
+        app:layout_constraintEnd_toStartOf="@+id/btnMasProgramador_PantallaConnection"
+        app:layout_constraintStart_toEndOf="@+id/btnMenosProgramador_PantallaConnection"
+        app:layout_constraintTop_toTopOf="@+id/btnMenosProgramador_PantallaConnection" />
+
+    <ImageView
+        android:id="@+id/btnMasProgramador_PantallaConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:onClick="subirTemperaturaProgramador"
+        app:layout_constraintBottom_toBottomOf="@+id/etNumeroProgramador_PantallaConnection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etNumeroProgramador_PantallaConnection"
+        app:srcCompat="@drawable/baseline_add_circle_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
