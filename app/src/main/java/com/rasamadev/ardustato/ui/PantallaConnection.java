@@ -189,6 +189,8 @@ public class PantallaConnection extends AppCompatActivity {
         // ESTABLECEMOS ULTIMA HORA, MINUTO Y TEMPERATURA PROGRAMADOS EN EL TEXVIEW, EDITTEXT Y LOS SEEKBAR
         tvTempProgramada_PantallaConnection.setText(tempProgramador);
         etNumeroProgramador_PantallaConnection.setText(tempProgramador);
+        sbHora_PantallaConnection.setProgress(Integer.parseInt(horaProgramador));
+        sbMinuto_PantallaConnection.setProgress(Integer.parseInt(minutoProgramador));
 
         // COMPROBACION DE SI LAS HORAS Y MINUTOS SON MENORES DE 10, PARA INCLUIRLES UN "0" DELANTE
         if(Integer.parseInt(horaProgramador) < 10){
@@ -197,16 +199,13 @@ public class PantallaConnection extends AppCompatActivity {
         else{
             horaminutoProgramador = "" + horaProgramador + ":";
         }
-        if(Integer.parseInt(horaProgramador) < 10){
+        if(Integer.parseInt(minutoProgramador) < 10){
             horaminutoProgramador += "0" + minutoProgramador;
         }
         else{
             horaminutoProgramador += minutoProgramador;
         }
         tvHoraProgramada_PantallaConnection.setText(horaminutoProgramador);
-
-        sbHora_PantallaConnection.setProgress(Integer.parseInt(horaProgramador));
-        sbMinuto_PantallaConnection.setProgress(Integer.parseInt(minutoProgramador));
     }
 
     /**
