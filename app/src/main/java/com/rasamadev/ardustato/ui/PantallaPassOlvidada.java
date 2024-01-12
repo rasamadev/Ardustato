@@ -48,12 +48,13 @@ public class PantallaPassOlvidada extends AppCompatActivity {
                 AlertDialogsUtil.mostrarMensaje(this,"ERROR","No existe ningun usuario con ese correo.");
             }
             else{
-
                 // PENDIENTE IMPLEMENTAR ENVIO CORREOS!
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("CONTRASEÑA ENVIADA");
-                builder.setMessage("Se ha enviado la contraseña a su cuenta de correo. Por motivos de seguridad, asegurese de cambiarla nada mas iniciar sesion en la aplicacion.");
+//                builder.setTitle("CONTRASEÑA ENVIADA");
+                builder.setTitle("USUARIO ENCONTRADO");
+//                builder.setMessage("Se ha enviado la contraseña a su cuenta de correo. Por motivos de seguridad, asegurese de cambiarla nada mas iniciar sesion en la aplicacion.");
+                builder.setMessage("La contraseña de su cuenta es:\n\n- " + pass + "\n\nPor motivos de seguridad, asegurese de cambiarla nada mas iniciar sesion en la aplicacion.");
                 builder.setCancelable(false);
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override

@@ -13,8 +13,4 @@ public class AlertDialogsUtil {
         builder.create();
         builder.show();
     }
-
-    public static void enviarCorreo(Context ctx){
-
-    }
 }
